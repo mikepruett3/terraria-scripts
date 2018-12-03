@@ -15,7 +15,7 @@ containers() {
 }
 
 # Check Parameters
-while getopts c:u:g: option do
+while getopts c:u:g: option; do
     case "${option}" in
         c)
             shift
