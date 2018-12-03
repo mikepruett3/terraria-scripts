@@ -15,7 +15,7 @@ containers() {
 
 # Check Parameters
 echo "$#"
-while [ "$#" -gt 0 ]; do 
+while [ "$#" -ge 0 ]; do 
     case "$1" in
         -c)
             shift;
