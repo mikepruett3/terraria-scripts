@@ -24,12 +24,12 @@ while [ "$1" != "" ]; do
             ;;
         -u )
             shift
-            User=$2
+            User=$1
             echo "$User"
             ;;
         -g )
             shift
-            Group=$3
+            Group=$1
             echo "$Group"
             ;;
         *)
