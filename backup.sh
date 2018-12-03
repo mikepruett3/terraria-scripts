@@ -18,21 +18,21 @@ containers() {
 echo "$@"
 while [ "$1" != "" ]; do 
     case "$@" in
-        -c*)
+        -c )
             echo "$0"
             echo "$1"
             shift
             Container=$1
             echo "$Container"
             ;;
-        -u*)
+        -u )
             echo "$0"
             echo "$1"
             shift
             User=$1
             echo "$User"
             ;;
-        -g*)
+        -g )
             echo "$0"
             echo "$1"
             shift
