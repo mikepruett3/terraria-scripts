@@ -21,22 +21,29 @@ while getopts c:u:g: option; do
         \? )
             User=$(id -u -n)
             Group=$(id -g -n)
-            containers
+            Containers=( $(docker container list --format '{{.Names}}') )
+            printf '%s\n' "${Containers[@]}"
+            echo ""
+            read -p "Which Container? > " Container
+            if [[ "$Container" != "${Containers[@]}" ]]; then
+                echo "$Container not a valid Container!"
+                exit 1
+            fi
             echo "$Container $User $Group"
     esac
     shift
 done
 
-containers() {
-    Containers=( $(docker container list --format '{{.Names}}') )
-    printf '%s\n' "${Containers[@]}"
-    echo ""
-    read -p "Which Container? > " Container
-    if [[ "$Container" != "${Containers[@]}" ]]; then
-        echo "$Container not a valid Container!"
-        exit 1
-    fi
-}
+#containers() {
+#    Containers=( $(docker container list --format '{{.Names}}') )
+#    printf '%s\n' "${Containers[@]}"
+#    echo ""
+#    read -p "Which Container? > " Container
+#    if [[ "$Container" != "${Containers[@]}" ]]; then
+#        echo "$Container not a valid Container!"
+#        exit 1
+#    fi
+#}
 
 # Lower Variables
 GameBackups="/data/game-backups/$Container/"
