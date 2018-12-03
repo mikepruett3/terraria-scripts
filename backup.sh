@@ -15,8 +15,7 @@ containers() {
 }
 
 # Check Parameters
-echo "$@"
-while [ "$1" != "" ]; do 
+while (( "$#" )); do 
     case "$@" in
         -c )
             echo "$0"
@@ -42,7 +41,6 @@ while [ "$1" != "" ]; do
         * )
             User=$(id -u -n)
             Group=$(id -g -n)
-            echo "$Container $User $Group"
             containers
     esac
 done
