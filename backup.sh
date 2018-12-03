@@ -40,7 +40,7 @@ while [ "$#" -gt 0 ]; do
 done
 
 echo "$NonInteractive"
-if [ "$NonInteractive" -eq 1 ]; then
+if [[ "$NonInteractive" -eq 1 ]]; then
     User=$(id -u -n)
     Group=$(id -g -n)
     containers
