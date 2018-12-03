@@ -2,7 +2,6 @@
 
 containers() {
     Containers=( $(docker container list --format '{{.Names}}') )
-    echo ""
     echo "Listing Containers:"
     echo ""
     printf '%s\n' "${Containers[@]}"
