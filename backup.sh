@@ -3,6 +3,17 @@
 # Top Variables
 #Container="Terraria"
 
+containers() {
+    Containers=( $(docker container list --format '{{.Names}}') )
+    printf '%s\n' "${Containers[@]}"
+    echo ""
+    read -p "Which Container? > " Container
+    if [[ "$Container" != "${Containers[@]}" ]]; then
+        echo "$Container not a valid Container!"
+        exit 1
+    fi
+}
+
 # Check Parameters
 case "$#" in
     -c)
@@ -20,28 +31,9 @@ case "$#" in
     *)
         User=$(id -u -n)
         Group=$(id -g -n)
-        Containers=( $(docker container list --format '{{.Names}}') )
-        printf '%s\n' "${Containers[@]}"
-        echo ""
-        read -p "Which Container? > " Container
-        if [[ "$Container" != "${Containers[@]}" ]]; then
-            echo "$Container not a valid Container!"
-            exit 1
-        fi
+        containers
         echo "$Container $User $Group"
 esac
-
-
-#containers() {
-#    Containers=( $(docker container list --format '{{.Names}}') )
-#    printf '%s\n' "${Containers[@]}"
-#    echo ""
-#    read -p "Which Container? > " Container
-#    if [[ "$Container" != "${Containers[@]}" ]]; then
-#        echo "$Container not a valid Container!"
-#        exit 1
-#    fi
-#}
 
 # Lower Variables
 GameBackups="/data/game-backups/$Container/"
