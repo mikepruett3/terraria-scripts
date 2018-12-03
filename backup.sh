@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Function to prompt for Container
 containers() {
     Containers=( $(docker container list --format '{{.Names}}') )
     echo "Listing Containers:"
@@ -14,7 +15,6 @@ containers() {
 }
 
 # Check Parameters
-echo "$#"
 while [ "$#" -ge 0 ]; do 
     case "$1" in
         -c)
