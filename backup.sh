@@ -4,21 +4,21 @@
 #Container="Terraria"
 
 # Check Parameters
-while getopts c:u:g: option; do
-    case "${option}" in
-        c )
+while [ $# -gt 0 ]; do
+    case "$1" in
+        c*)
             shift
             Container=$1
             ;;
-        u )
+        u*)
             shift
             User=$2
             ;;
-        g )
+        g*)
             shift
             Group=$3
             ;;
-        * )
+        *)
             User=$(id -u -n)
             Group=$(id -g -n)
             Containers=( $(docker container list --format '{{.Names}}') )
