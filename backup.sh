@@ -34,6 +34,7 @@ while [ "$#" -gt 0 ]; do
     shift
 done
 
+echo "$#"
 if [ "$#" -eq 0 ]; then
     User=$(id -u -n)
     Group=$(id -g -n)
