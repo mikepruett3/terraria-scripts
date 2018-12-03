@@ -15,6 +15,7 @@ containers() {
 }
 
 # Check Parameters
+echo "$@"
 while [ "$1" != "" ]; do 
     case "$@" in
         -c )
