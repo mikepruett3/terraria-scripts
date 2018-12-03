@@ -41,6 +41,7 @@ while [ "$#" -gt 0 ]; do
             exit 1;
             ;;
     esac
+    shift
 done
 
 #User=$(id -u -n)
