@@ -16,17 +16,17 @@ containers() {
 
 # Check Parameters
 case "$@" in
-    -c)
+    -c*)
         shift
         Container=$1
         echo "$Container"
         ;;
-    -u)
+    -u*)
         shift
         User=$2
         echo "$User"
         ;;
-    -g)
+    -g*)
         shift
         Group=$3
         echo "$Group"
