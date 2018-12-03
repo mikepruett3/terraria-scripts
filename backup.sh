@@ -4,17 +4,17 @@
 #Container="Terraria"
 
 # Check Parameters
-while [ $# -gt 0 ]; do
+while (( "$#" )); do
     case "$1" in
-        c*)
+        -c)
             shift
             Container=$1
             ;;
-        u*)
+        -u)
             shift
             User=$2
             ;;
-        g*)
+        -g*)
             shift
             Group=$3
             ;;
@@ -31,7 +31,6 @@ while [ $# -gt 0 ]; do
             fi
             echo "$Container $User $Group"
     esac
-    shift
 done
 
 #containers() {
