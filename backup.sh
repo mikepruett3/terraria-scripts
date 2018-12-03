@@ -8,7 +8,7 @@ containers() {
     printf '%s\n' "${Containers[@]}"
     echo ""
     read -p "Which Container? > " Container
-    if [[ "$Container" != "${Containers[@]}" ]]; then
+    if [[ "$Container" != "$(${Containers[@]})" ]]; then
         echo "$Container not a valid Container!"
         exit 1
     fi
