@@ -3,7 +3,6 @@
 # Top Variables
 Container="Terraria"
 
-
 containers() {
     Containers=( $(docker container list --format '{{.Names}}') )
     printf '%s\n' "${Containers[@]}"
@@ -16,24 +15,27 @@ containers() {
 }
 
 # Check Parameters
-case $1 in
-    -c | --container )
-        shift
-        Container=$1
-        ;;
-    -u | --user )
-        shift
-        User=$2
-        ;;
-    -g | --group )
-        shift
-        Group=$3
-        ;;
-    * )
-        User=$(id -u -n)
-        Group=$(id -g -n)
-        containers
-esac
+while getopts c:u:g: option do
+    case "${option}" in
+        c)
+            shift
+            Container=$1
+            ;;
+        u)
+            shift
+            User=$2
+            ;;
+        g)
+            shift
+            Group=$3
+            ;;
+        *)
+            User=$(id -u -n)
+            Group=$(id -g -n)
+            containers
+            echo "$Container $User $Group"
+    esac
+done
 
 # Lower Variables
 GameBackups="/data/game-backups/$Container/"
