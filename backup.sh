@@ -1,8 +1,44 @@
 #!/usr/bin/env bash
 
+# Top Variables
 Container="Terraria"
-User="media"
-Group="media"
+
+
+containers() {
+    Containers=( $(docker container list --format '{{.Names}}') )
+    echo "Select from the following containers?"
+    echo ${$Containers[@]}
+    read Container
+    if [ [ $Container != ${$Containers[@]} ] ]; then
+        echo "$Container not in ${$Containers[@]}!"
+        exit 1
+    fi
+}
+
+# Check Parameters
+while [ "$1" != "" ]; do
+    case $1 in
+        -c | --container )
+            shift
+            Container=$1
+            ;;
+        -u | --user )
+            shift
+            User=$2
+            ;;
+        -g | --group )
+            shift
+            Group=$3
+            ;;
+        * )
+            User=$(id -u -n)
+            Group=$(id -g -n)
+            containers
+    esac
+    shift
+done
+
+# Lower Variables
 GameBackups="/data/game-backups/$Container/"
 TimeStamp=$(date +"%m-%d-%Y_%H-%M-%S")
 
