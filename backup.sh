@@ -15,28 +15,30 @@ containers() {
 }
 
 # Check Parameters
-case "$@" in
-    -c*)
-        shift
-        Container=$1
-        echo "$Container"
-        ;;
-    -u*)
-        shift
-        User=$2
-        echo "$User"
-        ;;
-    -g*)
-        shift
-        Group=$3
-        echo "$Group"
-        ;;
-    *)
-        User=$(id -u -n)
-        Group=$(id -g -n)
-        echo "$Container $User $Group"
-        containers
-esac
+while [ "$1" != "" ]; do 
+    case "$@" in
+        -c*)
+            shift
+            Container=$1
+            echo "$Container"
+            ;;
+        -u*)
+            shift
+            User=$2
+            echo "$User"
+            ;;
+        -g*)
+            shift
+            Group=$3
+            echo "$Group"
+            ;;
+        *)
+            User=$(id -u -n)
+            Group=$(id -g -n)
+            echo "$Container $User $Group"
+            containers
+    esac
+done
 
 # Lower Variables
 GameBackups="/data/game-backups/$Container/"
