@@ -20,6 +20,7 @@ while [ "$#" -gt 0 ]; do
         -c)
             shift;
             Container=$1;
+            echo "$Container";
             ;;
         -u)
             echo "$0";
@@ -37,7 +38,7 @@ while [ "$#" -gt 0 ]; do
             ;;
         *)
             echo "Missing Arguments!";
-            break 1;
+            exit 1;
             ;;
     esac
 done
