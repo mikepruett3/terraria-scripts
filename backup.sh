@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Top Variables
-#Container="Terraria"
-
 containers() {
     Containers=( $(docker container list --format '{{.Names}}') )
     echo ""
@@ -23,17 +20,14 @@ while [ "$#" -gt 0 ]; do
         -c)
             shift;
             Container=$1;
-            echo "$Container";
             ;;
         -u)
             shift;
             User=$1;
-            echo "$User";
             ;;
         -g)
             shift;
             Group=$1;
-            echo "$Group";
             ;;
         *)
             User=$(id -u -n);
@@ -43,8 +37,6 @@ while [ "$#" -gt 0 ]; do
     esac
     shift
 done
-
-
 
 # Lower Variables
 GameBackups="/data/game-backups/$Container/"
