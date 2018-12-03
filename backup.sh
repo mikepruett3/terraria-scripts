@@ -18,11 +18,8 @@ containers() {
 while [ "$#" -gt 0 ]; do 
     case "$1" in
         -c)
-            echo "$0";
-            echo "$1";
             shift
             Container=$1
-            echo "$Container"
             ;;
         -u)
             echo "$0"
