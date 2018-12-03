@@ -16,27 +16,24 @@ containers() {
 }
 
 # Check Parameters
-while [ "$1" != "" ]; do
-    case $1 in
-        -c | --container )
-            shift
-            Container=$1
-            ;;
-        -u | --user )
-            shift
-            User=$2
-            ;;
-        -g | --group )
-            shift
-            Group=$3
-            ;;
-        * )
-            User=$(id -u -n)
-            Group=$(id -g -n)
-            containers
-    esac
-    shift
-done
+case $1 in
+    -c | --container )
+        shift
+        Container=$1
+        ;;
+    -u | --user )
+        shift
+        User=$2
+        ;;
+    -g | --group )
+        shift
+        Group=$3
+        ;;
+    * )
+        User=$(id -u -n)
+        Group=$(id -g -n)
+        containers
+esac
 
 # Lower Variables
 GameBackups="/data/game-backups/$Container/"
