@@ -18,7 +18,9 @@ containers() {
 echo "$@"
 while [ "$1" != "" ]; do 
     case "$@" in
-        -c )
+        -c*)
+            echo "$0"
+            echo "$1"
             shift
             Container=$1
             echo "$Container"
