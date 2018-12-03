@@ -18,7 +18,7 @@ while getopts c:u:g: option; do
             shift
             Group=$3
             ;;
-        \? )
+        * )
             User=$(id -u -n)
             Group=$(id -g -n)
             Containers=( $(docker container list --format '{{.Names}}') )
