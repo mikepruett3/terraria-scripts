@@ -18,29 +18,33 @@ containers() {
 while [ "$#" -gt 0 ]; do 
     case "$1" in
         -c)
-            shift
-            Container=$1
+            shift;
+            Container=$1;
             ;;
         -u)
-            echo "$0"
-            echo "$1"
-            shift
-            User=$1
-            echo "$User"
+            echo "$0";
+            echo "$1";
+            shift;
+            User=$1;
+            echo "$User";
             ;;
         -g)
-            echo "$0"
-            echo "$1"
-            shift
-            Group=$1
-            echo "$Group"
+            echo "$0";
+            echo "$1";
+            shift;
+            Group=$1;
+            echo "$Group";
             ;;
         *)
-            User=$(id -u -n)
-            Group=$(id -g -n)
-            containers
+            echo "Missing Arguments!";
+            break 1;
+            ;;
     esac
 done
+
+#User=$(id -u -n)
+#Group=$(id -g -n)
+#containers
 
 # Lower Variables
 GameBackups="/data/game-backups/$Container/"
