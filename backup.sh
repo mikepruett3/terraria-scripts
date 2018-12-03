@@ -14,6 +14,11 @@ containers() {
     fi
 }
 
+echo "$#"
+if [ "$#" -eq 0 ]; then
+    NonInteractive=1
+fi
+
 # Check Parameters
 while [ "$#" -gt 0 ]; do 
     case "$1" in
@@ -34,8 +39,8 @@ while [ "$#" -gt 0 ]; do
     shift
 done
 
-echo "$#"
-if [ "$#" -eq 0 ]; then
+echo "$NonInteractive"
+if [ "$NonInteractive" -eq 1 ]; then
     User=$(id -u -n)
     Group=$(id -g -n)
     containers
