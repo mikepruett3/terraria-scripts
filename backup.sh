@@ -17,24 +17,25 @@ containers() {
 # Check Parameters
 while getopts c:u:g: option; do
     case "${option}" in
-        c)
+        c )
             shift
             Container=$1
             ;;
-        u)
+        u )
             shift
             User=$2
             ;;
-        g)
+        g )
             shift
             Group=$3
             ;;
-        *)
+        \? )
             User=$(id -u -n)
             Group=$(id -g -n)
             containers
             echo "$Container $User $Group"
     esac
+    shift
 done
 
 # Lower Variables
