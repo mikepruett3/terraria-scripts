@@ -31,8 +31,8 @@ case "$#" in
     *)
         User=$(id -u -n)
         Group=$(id -g -n)
-        containers
         echo "$Container $User $Group"
+        containers
 esac
 
 # Lower Variables
