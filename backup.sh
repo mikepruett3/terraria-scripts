@@ -4,34 +4,33 @@
 #Container="Terraria"
 
 # Check Parameters
-while (( "$#" )); do
-    case "$1" in
-        -c)
-            shift
-            Container=$1
-            ;;
-        -u)
-            shift
-            User=$2
-            ;;
-        -g*)
-            shift
-            Group=$3
-            ;;
-        *)
-            User=$(id -u -n)
-            Group=$(id -g -n)
-            Containers=( $(docker container list --format '{{.Names}}') )
-            printf '%s\n' "${Containers[@]}"
-            echo ""
-            read -p "Which Container? > " Container
-            if [[ "$Container" != "${Containers[@]}" ]]; then
-                echo "$Container not a valid Container!"
-                exit 1
-            fi
-            echo "$Container $User $Group"
-    esac
-done
+case "$#" in
+    -c)
+        shift
+        Container=$1
+        ;;
+    -u)
+        shift
+        User=$2
+        ;;
+    -g)
+        shift
+        Group=$3
+        ;;
+    *)
+        User=$(id -u -n)
+        Group=$(id -g -n)
+        Containers=( $(docker container list --format '{{.Names}}') )
+        printf '%s\n' "${Containers[@]}"
+        echo ""
+        read -p "Which Container? > " Container
+        if [[ "$Container" != "${Containers[@]}" ]]; then
+            echo "$Container not a valid Container!"
+            exit 1
+        fi
+        echo "$Container $User $Group"
+esac
+
 
 #containers() {
 #    Containers=( $(docker container list --format '{{.Names}}') )
