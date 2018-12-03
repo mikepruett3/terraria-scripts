@@ -1,18 +1,7 @@
 #!/usr/bin/env bash
 
 # Top Variables
-Container="Terraria"
-
-containers() {
-    Containers=( $(docker container list --format '{{.Names}}') )
-    printf '%s\n' "${Containers[@]}"
-    echo ""
-    read -p "Which Container? > " Container
-    if [[ "$Container" != "${Containers[@]}" ]]; then
-        echo "$Container not a valid Container!"
-        exit 1
-    fi
-}
+#Container="Terraria"
 
 # Check Parameters
 while getopts c:u:g: option; do
@@ -37,6 +26,17 @@ while getopts c:u:g: option; do
     esac
     shift
 done
+
+containers() {
+    Containers=( $(docker container list --format '{{.Names}}') )
+    printf '%s\n' "${Containers[@]}"
+    echo ""
+    read -p "Which Container? > " Container
+    if [[ "$Container" != "${Containers[@]}" ]]; then
+        echo "$Container not a valid Container!"
+        exit 1
+    fi
+}
 
 # Lower Variables
 GameBackups="/data/game-backups/$Container/"
