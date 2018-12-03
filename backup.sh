@@ -6,11 +6,11 @@ Container="Terraria"
 
 containers() {
     Containers=( $(docker container list --format '{{.Names}}') )
-    echo "Select from the following containers?"
-    echo ${$Containers[@]}
-    read Container
-    if [ [ $Container != ${$Containers[@]} ] ]; then
-        echo "$Container not in ${$Containers[@]}!"
+    printf '%s\n' "${Containers[@]}"
+    echo ""
+    read -p "Which Container? > " Container
+    if [[ "$Container" != "${Containers[@]}" ]]; then
+        echo "$Container not a valid Container!"
         exit 1
     fi
 }
