@@ -25,12 +25,16 @@ while [ "$1" != "" ]; do
             Container=$1
             echo "$Container"
             ;;
-        -u )
+        -u*)
+            echo "$0"
+            echo "$1"
             shift
             User=$1
             echo "$User"
             ;;
-        -g )
+        -g*)
+            echo "$0"
+            echo "$1"
             shift
             Group=$1
             echo "$Group"
