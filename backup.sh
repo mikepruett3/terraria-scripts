@@ -16,15 +16,15 @@ containers() {
 
 # Check Parameters
 case "$@" in
-    -c)
+    -c*)
         shift
         Container=$1
         ;;
-    -u)
+    -u*)
         shift
         User=$2
         ;;
-    -g)
+    -g*)
         shift
         Group=$3
         ;;
