@@ -9,7 +9,7 @@ containers() {
     echo ""
     read -p "Which Container? > " Container
     #if [[ $(contains "${Containers[@]}" "$Container") == "n" ]]; then
-    if [[ printf "%s\n" "${Containers[@]}" | grep "^$Container$" ]]; then
+    if [ ( printf "%s\n" "${Containers[@]}" | grep "^$Container$" ) ]; then
     #if [[ "$Container" != "${Containers[@]}" ]]; then
         echo "$Container not a valid Container!"
         exit 1
