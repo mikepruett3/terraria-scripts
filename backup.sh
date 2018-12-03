@@ -39,7 +39,7 @@ while [ "$1" != "" ]; do
             Group=$1
             echo "$Group"
             ;;
-        *)
+        * )
             User=$(id -u -n)
             Group=$(id -g -n)
             echo "$Container $User $Group"
